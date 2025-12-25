@@ -1,14 +1,14 @@
 public class Equipment {
     private String name;
     private int hpBonus;
-    private int atkBouns;
-    private int defBouns;
+    private int atkBonus;
+    private int defBonus;
 
-    public Equipment(String name, int hpBonus, int atkBouns, int defBouns){
+    public Equipment(String name, int hpBonus, int atkBonus, int defBonus){
         this.name = name;
         this.hpBonus = hpBonus;
-        this.atkBouns = atkBouns;
-        this.defBouns = defBouns;
+        this.atkBonus = atkBonus;
+        this.defBonus = defBonus;
     }
 
     public String getName(){
@@ -16,11 +16,11 @@ public class Equipment {
     }
 
     public int getAtkBonus(){
-        return atkBouns;
+        return atkBonus;
     }
 
     public int getDefBonus(){
-        return defBouns;
+        return defBonus;
     }
 
     public int getHpBonus(){
