@@ -113,34 +113,31 @@ public class hw5 {
 
                 Card card = createCard(cardName);
                 if (card != null) {
-                    // 設定基本數值
-                    if (card.getHp() > hp) {
-                        // 如果 createCard 預設是滿血，就要扣血
-                        card.takeDamage(card.getHp() - hp);
-                    } else if (card.getHp() < hp) {
-                        // 如果讀到的血量比預設高，就要補血
-                        card.heal(hp - card.getHp());
-                    }
-
                     // 設定場上位置
                     player.setFieldCard(i, card);
 
-                    // 處理裝備或藥水
+                    // 處理裝備與藥水
                     for (int j = 5; j < parts.length; j++) {
                         String item = parts[j].trim();
-                        // 判斷是裝備還是藥水
-                        Equipment equip = createEquipment(item);
+                        Equipment equip = EquipmentManager.createEquipment(item);
+
                         if (equip != null) {
                             card.equip(equip);
                         } else if (item.contains("potion")) {
                             card.setUsedPotion(true);
                         }
                     }
+
+                    // 設定血量
+                    if (card.getHp() > hp) {
+                        card.takeDamage(card.getHp() - hp);
+                    } else if (card.getHp() < hp) {
+                        card.heal(hp - card.getHp());
+                    }
                 }
             }
         }
     }
-
     private Card createCard(String name) {
         if (name.equalsIgnoreCase("Priest")) return new Priest();
         if (name.equalsIgnoreCase("Tank")) return new Tank();
@@ -149,20 +146,6 @@ public class hw5 {
         if (name.equalsIgnoreCase("Businessman")) return new Businessman();
         if (name.equalsIgnoreCase("Bomber")) return new Bomber();
         return null;
-    }
-
-    // 簡單的裝備工廠方法
-    private Equipment createEquipment(String name) {
-        String n = name.toLowerCase();
-        return switch (n) {
-            case "armor" -> new Armor();
-            case "hat" -> new Hat();
-            case "knife" -> new Knife();
-            case "mask" -> new Mask();
-            case "force" -> new Force();
-            case "shield" -> new Shield();
-            default -> null;
-        };
     }
 
     // 遊戲主流程
