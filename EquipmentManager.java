@@ -1,4 +1,4 @@
-public class EquipmentFactory {
+public class EquipmentManager {
     public static Equipment createEquipment(String name){
         return switch (name.toLowerCase()) {
             case "armor" -> new Armor();

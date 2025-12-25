@@ -118,7 +118,7 @@ public class Player{
         }
 
         // 4. 執行裝備
-        Equipment equip = EquipmentFactory.createEquipment(key); // 假設你有實作 Factory
+        Equipment equip = EquipmentManager.createEquipment(key); // 假設你有實作 Factory
         if (equip != null) {
             target.equip(equip); // 呼叫 Card 的 equip 方法
 
