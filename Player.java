@@ -73,7 +73,7 @@ public class Player{
     }
 
     public void addHandCard(Card card){
-        if (hand.size() <= 4){
+        if (hand.size() <= 10){
             hand.add(card);
         }
     }

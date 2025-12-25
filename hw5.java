@@ -434,10 +434,49 @@ public class hw5 {
         return "Pos " + pos + ": " + info;
     }
 
-    private void printDualColumn(String left, String right) {
-        System.out.printf("%-40s | %-40s\n", left, right);
+    // 將過長字串依指定寬度自動換行
+    private List<String> wordWrap(String text, int maxWidth) {
+        List<String> lines = new ArrayList<>();
+        String[] words = text.split(" "); // 以空白為切割單位
+        StringBuilder currentLine = new StringBuilder();
+
+        for (String word : words) {
+            // 檢查加上這個字後是否會超過寬度
+            if (currentLine.length() + 1 + word.length() > maxWidth) {
+                if (!currentLine.isEmpty()) {
+                    lines.add(currentLine.toString());
+                    currentLine = new StringBuilder();
+                }
+            }
+            if (!currentLine.isEmpty()) {
+                currentLine.append(" ");
+            }
+            currentLine.append(word);
+        }
+        if (!currentLine.isEmpty()) {
+            lines.add(currentLine.toString());
+        }
+        return lines;
     }
 
+    private void printDualColumn(String left, String right) {
+        int width = 40; // 設定欄寬
+
+        // 將左右的文字分別斷行
+        List<String> leftLines = wordWrap(left, width);
+        List<String> rightLines = wordWrap(right, width);
+
+        // 找出哪一邊的行數較多
+        int maxLines = Math.max(leftLines.size(), rightLines.size());
+
+        for (int i = 0; i < maxLines; i++) {
+            // 取出該行的文字，若那邊已無文字則填空字串
+            String lLine = (i < leftLines.size()) ? leftLines.get(i) : "";
+            String rLine = (i < rightLines.size()) ? rightLines.get(i) : "";
+
+            System.out.printf("%-40s | %-40s%n", lLine, rLine);
+        }
+    }
     private String getHandString(Player p) {
         List<Card> hand = p.getHand();
         if (hand.isEmpty()) return "Cards: None";

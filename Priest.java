@@ -8,7 +8,7 @@ public class Priest extends Card{
         Card[] field = own.getField();
         for (int i = 1; i <= 3; i++) {
             Card target = field[i];
-            if (target != null) {
+            if (target != null && !target.isDead()) {
                 target.heal(10);
 
                 System.out.println("area " + i + ": " + own.getName() + "'s " + target.getName() + "'s life restored to " + target.getHp());

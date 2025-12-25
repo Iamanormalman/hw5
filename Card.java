@@ -30,7 +30,9 @@ public abstract class Card {
             System.out.println("[Critical Hit!]");
         }
         if(target!=null){
-            target.takeDamage(finalDamage);
+            int dmg = finalDamage - target.getDefensePower();
+            if (dmg < 0) dmg = 0;
+            target.takeDamage(dmg);
         }else{
             opponent.takeDamage(finalDamage);
         }
