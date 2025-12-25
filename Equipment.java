@@ -1,8 +1,8 @@
 public class Equipment {
-    private String name;
-    private int hpBonus;
-    private int atkBonus;
-    private int defBonus;
+    private final String name;
+    private final int hpBonus;
+    private final int atkBonus;
+    private final int defBonus;
 
     public Equipment(String name, int hpBonus, int atkBonus, int defBonus){
         this.name = name;

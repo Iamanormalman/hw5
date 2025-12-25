@@ -1,13 +1,13 @@
 public class EquipmentFactory {
     public static Equipment createEquipment(String name){
-        switch (name.toLowerCase()){
-            case "armor": return new Armor();
-            case "hat": return new Hat();
-            case "knife": return new Knife();
-            case "mask": return new Mask();
-            case "force": return new Force();
-            case "shield": return new Shield();
-            default: return null;
-        }
+        return switch (name.toLowerCase()) {
+            case "armor" -> new Armor();
+            case "hat" -> new Hat();
+            case "knife" -> new Knife();
+            case "mask" -> new Mask();
+            case "force" -> new Force();
+            case "shield" -> new Shield();
+            default -> null;
+        };
     }
 }

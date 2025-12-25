@@ -154,13 +154,15 @@ public class hw5 {
     // 簡單的裝備工廠方法
     private Equipment createEquipment(String name) {
         String n = name.toLowerCase();
-        if (n.equals("armor")) return new Armor();
-        if (n.equals("hat")) return new Hat();
-        if (n.equals("knife")) return new Knife();
-        if (n.equals("mask")) return new Mask();
-        if (n.equals("force")) return new Force();
-        if (n.equals("shield")) return new Shield();
-        return null;
+        return switch (n) {
+            case "armor" -> new Armor();
+            case "hat" -> new Hat();
+            case "knife" -> new Knife();
+            case "mask" -> new Mask();
+            case "force" -> new Force();
+            case "shield" -> new Shield();
+            default -> null;
+        };
     }
 
     // 遊戲主流程
@@ -277,7 +279,7 @@ public class hw5 {
                         System.out.println("Error: Unknown card or equipment '" + item + "'");
                     }
                 }
-                else if (parts.length >= 4 && parts[2].equals("potion")) {
+                else if (parts[2].equals("potion")) {
                     // 處理 damage potion, defense potion
                     String potionName = parts[1] + " " + parts[2];
                     int pos = parsePos(parts[3]);
@@ -478,7 +480,7 @@ public class hw5 {
         if (sb2.isEmpty()) sb2.append("Potions: None");
         else sb2.insert(0, "Potions: ");
 
-        return sb.toString() + sb2.toString();
+        return sb.append(sb2).toString();
     }
 
     // 勝負判定
