@@ -1,5 +1,7 @@
-public class Businessman extends Card{
-    public Businessman() {super("Businessman", 50, 50, 20, 1);}
+public class Bomber extends Card {
+    public Bomber() {
+        super("Bomber", 999, 1, 20, 3);
+    }
 
     @Override
     public void useSkill(Player own, Player opponent) {
@@ -16,12 +18,13 @@ public class Businessman extends Card{
         Card target = oppField[myIndex];
 
         if (target != null) {
-            System.out.println("In area " + myIndex + ": " + own.getName() + "'s businessman use skill");
+            System.out.println("In area " + myIndex + ": " + own.getName() + "'s bomber use skill");
 
-            own.setFieldCard(myIndex, target);
-            opponent.setFieldCard(myIndex, null);
+            this.hp = 0;
+            target.takeDamage(target.getHp());
 
-            System.out.println("area " + myIndex + ": " + own.getName() + "'s " + target.getName() + " has " + target.getHp() + " life points left");
+            System.out.println("area " + myIndex + ": " + own.getName() + "'s none");
             System.out.println("area " + myIndex + ": " + opponent.getName() + "'s none");
         }
-    }}
+    }
+}
