@@ -5,6 +5,7 @@ public class DamagePotion extends Potion{
 
     @Override
     public void use(Card target){
-
+        target.addTempAttack(30);
+        System.out.println(target.getName() + " uses damage potion.");
     }
 }
